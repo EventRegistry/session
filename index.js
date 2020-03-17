@@ -162,6 +162,9 @@ function session(options) {
 
     if (cookieOptions.secure === 'auto') {
       req.session.cookie.secure = issecure(req, trustProxy);
+      if (!req.session.cookie.secure) {
+        delete req.session.cookie.sameSite;
+      }
     }
   };
 
